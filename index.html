@@ -2,44 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Kalp ASCII</title>
+  <title>Kalpten Gelen Kod</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: black;
-      color: red;
-      font-family: monospace;
-      white-space: pre;
-      font-size: 16px;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+      color: #ff4d6d;
+      font-family: 'Courier New', monospace;
+      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-    }
-    .ascii {
-      animation: blink 1s infinite;
+      overflow: hidden;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 0 5px #ff4d6d, 0 0 15px #ff4d6d;
+      animation: pulse 2s infinite;
+    }
+
+    .ascii {
+      white-space: pre;
+      font-size: 18px;
+      line-height: 1.2;
+      text-align: center;
+      color: #ff4d6d;
+      text-shadow: 0 0 5px #ff4d6d;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; text-shadow: 0 0 5px #ff4d6d; }
+      100% { opacity: 0.7; text-shadow: 0 0 20px #ff4d6d; }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 14px;
+      color: #666;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
+  <h1>Kodlayan Kalpten Sevgilerle ❤</h1>
   <div class="ascii" id="heart"></div>
+  <footer>Bu kalp sadece Kaan için atıyor.</footer>
 
   <script>
     const heart = `
-  ***     ***
-******* *******
-***************
- *************
-  ***********
-   *********
-     *****
-      ***
-       *
-`;
+      ***     ***
+    ******* *******
+   ***************
+    *************
+     ***********
+      *********
+        *****
+         ***
+          *
+    `;
     document.getElementById("heart").textContent = heart;
   </script>
 </body>
