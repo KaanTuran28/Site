@@ -7,20 +7,12 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
-    /* Arka plan renk animasyonu için */
     @keyframes bgGradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    /* Kalp parlama animasyonu */
     @keyframes flicker {
       0%, 100% { opacity: 1; text-shadow: 0 0 8px #ff5e78; }
       50% { opacity: 0.8; text-shadow: 0 0 25px #ff5e78; }
@@ -45,8 +37,8 @@
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 25px;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
       color: #fff;
       text-shadow: 0 0 10px #ff5e78, 0 0 20px #ff5e78;
       animation: flicker 3s ease-in-out infinite;
@@ -54,7 +46,7 @@
 
     .ascii {
       white-space: pre;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.2;
       text-shadow:
         0 0 8px #ff5e78,
@@ -79,47 +71,16 @@
       pointer-events: none;
     }
 
-    /* Input ve buton düzeni */
-    .input-container {
+    .centered {
       display: flex;
-      gap: 10px;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
+      flex: 1;
+      height: 100%;
+      z-index: 1;
     }
 
-    input[type="text"] {
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: 2px solid #ff5e78;
-      background: transparent;
-      color: #fff;
-      font-size: 1.1rem;
-      outline: none;
-      width: 200px;
-      transition: border-color 0.3s ease;
-    }
-    input[type="text"]:focus {
-      border-color: #ff9bb3;
-    }
-
-    button {
-      padding: 10px 25px;
-      border-radius: 25px;
-      border: none;
-      background: #ff5e78;
-      color: white;
-      font-size: 1.1rem;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ff5e78;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #ff9bb3;
-      box-shadow: 0 0 20px #ff9bb3;
-    }
-
-    /* Basit partikül animasyonu */
     .particles {
       position: fixed;
       top: 0;
@@ -154,20 +115,15 @@
   </style>
 </head>
 <body>
-  <h1>Numaranı Alabilirmiyim 💖</h1>
-  <div class="ascii" id="heart"></div>
-
-  <div class="input-container">
-    <input type="text" id="numberInput" placeholder="Numaranı yaz..." maxlength="15" />
-    <button id="submitBtn">Gönder</button>
+  <div class="centered">
+    <h1>Numaranı Alabilirmiyim 💖</h1>
+    <div class="ascii" id="heart"></div>
   </div>
 
   <footer>&copy; 2025 Kaan tarafından, gönülden kodlandı.</footer>
-
   <div class="particles" id="particles"></div>
 
   <script>
-    // ASCII kalp içeriği
     const heart = `
 ⠀⠀⠀⠀⠀⢀⡴⢾⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠶⣦⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢀⡟⠁⣼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆⠘⣧⠀⠀⠀⠀
@@ -189,23 +145,10 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠿⣿⣧⣠⣾⣝⡿⢟⡿⣿⣿⣦⡀⠀⠀⢀⣼⣿⣿⣿⢿⣟⣽⣧⣤⣿⡿⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⠿⢿⡿⣿⣿⠃⠈⠻⣿⣷⡄⣠⣿⣽⠟⠁⢻⣿⡿⠿⠟⠿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣷⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    `;
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
+
     document.getElementById("heart").textContent = heart;
 
-    // Basit input kontrolü ve alert
-    document.getElementById('submitBtn').addEventListener('click', () => {
-      const val = document.getElementById('numberInput').value.trim();
-      if (!val) {
-        alert("Lütfen numaranı gir!");
-      } else if (!/^\+?\d{6,15}$/.test(val)) {
-        alert("Geçerli bir numara giriniz (en az 6 haneli).");
-      } else {
-        alert(`Numaran alındı: ${val} 💖`);
-      }
-    });
-
-    // Partikül efektleri oluşturma
     const particlesContainer = document.getElementById('particles');
     const particleCount = 25;
 
