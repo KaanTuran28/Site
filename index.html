@@ -21,33 +21,43 @@
       50% { opacity: 0.8; text-shadow: 0 0 25px var(--pink); }
     }
 
-    @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.03); }
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Courier Prime', monospace;
-      color: var(--pink);
-      background: #000;
-      overflow: hidden;
-      position: relative;
-      text-align: center;
-    }
-
-    html, body {
-  overflow: hidden;
-  height: 100%;
-  touch-action: none;
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
+#heart {
+  display: inline-block;
+  animation: heartBeat 1s infinite;
+  white-space: pre;
+  font-family: monospace;
+  font-size: 16px;
+  color: var(--pink);
+  text-shadow:
+    0 0 8px var(--pink),
+    0 0 20px var(--pink),
+    0 0 30px var(--pink);
+}
+
+
+.ascii {
+  /* diğer stiller */
+  animation: flicker 3s ease-in-out infinite alternate, heartBeat 1.2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Courier Prime', monospace;
+      background: #000;
+      color: var(--pink);
+      text-align: center;
+      touch-action: none;
+    }
 
     body::before {
       content: "";
@@ -67,36 +77,33 @@
       margin-bottom: 20px;
     }
 
-.ascii {
-  white-space: pre;
-  font-size: 12px; /* Daha küçük yazı */
-  line-height: 1;
-  text-shadow:
-    0 0 6px #ff5e78,
-    0 0 12px #ff5e78;
-  animation: flicker 3s ease-in-out infinite alternate;
-  max-width: 90vw;
-  max-height: 50vh; /* Kalbi sığdırmak için sınırla */
-  overflow: auto; /* Gerekirse kaydır */
-  margin: 0 auto 20px auto;
-  user-select: none;
-}
+    .ascii {
+      white-space: pre;
+      font-size: 14px;
+      line-height: 1.1;
+      text-shadow:
+        0 0 8px #ff5e78,
+        0 0 20px #ff5e78,
+        0 0 30px #ff5e78;
+      animation: flicker 3s ease-in-out infinite alternate;
+      max-width: 90vw;
+      max-height: 55vh;
+      overflow: auto;
+      margin: 0 auto 30px auto;
+      user-select: none;
+    }
 
-
-
-.centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-height: 100vh;
-  overflow: hidden;
-  padding: 0 10px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-
+    .centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      max-height: 100vh;
+      overflow: hidden;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
 
     footer {
       position: fixed;
@@ -155,27 +162,18 @@
 
   <script>
     const heart = `
-⠀⠀⠀⠀⠀⢀⡴⢾⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⠶⣦⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⡟⠁⣼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡆⠘⣧⠀⠀⠀⠀
-⠀⠀⠀⢀⣼⠀⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣧⠀⢹⣄⠀⠀⠀
-⠀⠀⢠⡟⣿⠀⠀⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡿⠀⢸⡟⣧⠀⠀
-⠀⠀⢸⡇⢿⡀⠀⢻⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠇⠀⣸⡇⢻⡀⠀
-⠀⢀⣿⡁⠈⣧⠀⠈⢿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠏⠀⢠⡟⠀⣼⣇⠀
-⠀⣾⠙⣧⠀⢿⣷⡀⠀⠻⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠃⠀⣰⣿⠀⢠⡟⢹⡆
-⠀⣷⠀⠘⣧⠈⣿⣷⡄⠀⣸⠻⣄⠀⣠⣴⣿⣿⣭⣯⣽⣿⣷⣦⣀⠀⠀⣠⡴⣾⣿⣭⣭⣭⣿⣳⣦⣀⢀⣴⣿⡄⢀⣼⣿⠃⢠⡟⠀⢸⡇
-⢰⡿⣆⠐⣿⣷⡽⣿⣿⣦⣿⣧⢩⣿⣿⣿⠟⠉⠉⣉⣭⠿⠿⠿⣟⣷⣾⣿⠿⠿⢯⣍⡈⠉⠙⠻⣿⣿⣿⣴⣿⣧⣾⣿⡟⣰⣿⠆⢀⡿⢷
-⢸⡇⠹⣦⠈⢿⣿⣎⢻⣿⡌⢻⡿⣿⠟⠁⠀⢠⡾⠋⠀⠀⠀⠀⠙⢧⡿⠃⠀⠀⠀⠈⠛⣦⡀⠀⠈⢿⣿⣿⠋⣿⣿⢋⣼⣿⠋⢠⡾⠁⣾
-⠈⢿⡀⢾⣷⣌⠻⣿⣟⠿⣿⣸⣻⡿⠀⠀⢠⡟⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠈⢷⠀⠀⠈⣿⣽⣿⡿⢟⣿⠿⢋⣴⣿⠀⣼⠇
-⠀⠈⣿⣄⠙⢿⣷⣼⣿⣆⡈⢹⣹⣷⠀⠀⢸⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⣿⢹⡏⣠⣾⣿⣴⡿⠛⢁⡼⡏⠀
-⠀⠐⣷⠈⠳⣦⣸⢿⣿⡿⢧⣼⣯⣿⣄⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠄⠀⣼⣿⣿⡥⠿⢿⣿⢿⣠⡾⠋⢠⡇⠀
-⠀⠀⠘⢷⣀⠛⢿⣷⣿⣷⣤⡜⢿⣿⣿⣆⠀⢻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡇⢀⣼⣿⣿⡟⣤⣶⣿⣷⡿⠟⠃⣴⠟⠀⠀
-⠀⠀⠀⠀⠙⠷⣤⣘⡻⢿⣿⠿⠟⢿⣿⣿⣷⣄⢻⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠏⣠⣾⣿⣿⠟⠻⢿⣿⢿⣋⣠⠶⠟⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠉⠙⣿⣷⢀⣤⡴⢾⣿⣿⣿⣷⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣾⣿⣿⣿⠷⣤⣀⣴⣿⡟⠉⠁⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢻⣿⣧⢀⣴⠟⢿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⣠⣿⣿⣷⣿⣿⠟⢷⣀⣠⣽⡟⠛⠁⠀⠀⠄⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠿⣿⣧⣠⣾⣝⡿⢟⡿⣿⣿⣦⡀⠀⠀⢀⣼⣿⣿⣿⢿⣟⣽⣧⣤⣿⡿⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⠿⢿⡿⣿⣿⠃⠈⠻⣿⣷⡄⣠⣿⣽⠟⠁⢻⣿⡿⠿⠟⠿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣷⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
+⠀⠀⢀⣤⣾⣿⣿⣿⣿⣿⣶⣤⡀⢀⣤⣶⣿⣿⣿⣿⣿⣷⣤⡀⠀⠀
+⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀
+⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄
+⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀
+⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀
+⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
     document.getElementById("heart").textContent = heart;
 
