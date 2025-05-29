@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalp ASCII</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: monospace;
+      white-space: pre;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .ascii {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ascii" id="heart"></div>
+
+  <script>
+    const heart = `
+  ***     ***
+******* *******
+***************
+ *************
+  ***********
+   *********
+     *****
+      ***
+       *
+`;
+    document.getElementById("heart").textContent = heart;
+  </script>
+</body>
+</html>
