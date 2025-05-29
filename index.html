@@ -8,55 +8,50 @@
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
     :root {
-      --pink: #ff5e78;
+      --pink: #ff5e78; /* Ana pembe renk değişkeni */
     }
 
     @keyframes bgPulse {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      0%, 100% { background-position: 0% 50%; } /* Animasyonun başı ve sonu */
+      50% { background-position: 100% 50%; }  /* Animasyonun ortası */
     }
 
     @keyframes flicker {
-      0%, 100% { opacity: 1; text-shadow: 0 0 8px var(--pink); }
-      50% { opacity: 0.8; text-shadow: 0 0 25px var(--pink); }
+      0%, 100% { 
+        opacity: 1; /* Tam görünür */
+        text-shadow: 0 0 8px var(--pink); /* Hafif pembe parıltı */
+      }
+      50% { 
+        opacity: 0.8; /* Biraz şeffaflık */
+        text-shadow: 0 0 25px var(--pink); /* Daha güçlü pembe parıltı */
+      }
     }
 
-@keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); } /* Normal boyut */
+      50% { transform: scale(1.1); } /* %10 büyütme kalp atışı efekti */
+    }
 
-#heart {
-  display: inline-block;
-  animation: heartBeat 1s infinite;
-  white-space: pre;
-  font-family: monospace;
-  font-size: 16px;
-  color: var(--pink);
-  text-shadow:
-    0 0 8px var(--pink),
-    0 0 20px var(--pink),
-    0 0 30px var(--pink);
-}
-
-
-.ascii {
-  /* diğer stiller */
-  animation: flicker 3s ease-in-out infinite alternate, heartBeat 1.2s ease-in-out infinite;
-  transform-origin: center center;
-}
-
-
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Courier Prime', monospace;
-      background: #000;
-      color: var(--pink);
-      text-align: center;
-      touch-action: none;
+      height: 100vh; /* Görüntü yüksekliğine göre tam ekran */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Dikey ortalama */
+      align-items: center; /* Yatay ortalama */
+      font-family: 'Courier Prime', monospace; /* Yazı tipi */
+      color: var(--pink); /* Yazı rengi pembe */
+      background: #000; /* Siyah arka plan */
+      overflow: hidden; /* Kaydırma gizle */
+      position: relative;
+      text-align: center; /* Metni ortala */
+    }
+
+    html, body {
+      overflow: hidden; /* Kaydırma engelle */
+      height: 100%; /* Yükseklik tam */
+      touch-action: none; /* Dokunmatik kaydırmayı engelle */
     }
 
     body::before {
@@ -65,32 +60,36 @@
       top: 0; left: 0;
       width: 100vw; height: 100vh;
       background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1200&q=60') no-repeat center center/cover;
-      filter: blur(10px) brightness(0.15);
-      z-index: -2;
+      filter: blur(10px) brightness(0.15); /* Bulanık ve karartılmış arka plan */
+      z-index: -2; /* En geride göster */
     }
 
     h1 {
-      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      font-size: clamp(1.8rem, 6vw, 2.5rem); /* Responsive yazı boyutu */
       color: #fff;
-      text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink);
-      animation: flicker 3s ease-in-out infinite;
-      margin-bottom: 20px;
+      text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink); /* Yazı parıltısı */
+      animation: flicker 3s ease-in-out infinite; /* Flicker animasyonu */
+      margin-bottom: 20px; /* Alt boşluk */
     }
 
     .ascii {
-      white-space: pre;
-      font-size: 14px;
-      line-height: 1.1;
+      white-space: pre; /* ASCII metnini olduğu gibi koru */
+      font-size: 16px; /* Yazı boyutu */
+      line-height: 1.1; /* Satır yüksekliği */
       text-shadow:
         0 0 8px #ff5e78,
         0 0 20px #ff5e78,
-        0 0 30px #ff5e78;
-      animation: flicker 3s ease-in-out infinite alternate;
-      max-width: 90vw;
-      max-height: 55vh;
-      overflow: auto;
-      margin: 0 auto 30px auto;
-      user-select: none;
+        0 0 30px #ff5e78; /* Çoklu parıltı efekti */
+      animation: flicker 3s ease-in-out infinite alternate; /* Flicker animasyonu */
+      max-width: 90vw; /* Maksimum genişlik */
+      max-height: 60vh; /* Maksimum yükseklik */
+      overflow: hidden; /* Taşma gizle */
+      margin: 0 auto 30px auto; /* Ortala ve alt boşluk */
+      user-select: none; /* Metin seçimini engelle */
+      animation-name: heartBeat; /* Kalp atışı animasyonu */
+      animation-duration: 1.2s; /* Animasyon süresi */
+      animation-iteration-count: infinite; /* Sonsuz tekrar */
+      animation-timing-function: ease-in-out; /* Yumuşak geçiş */
     }
 
     .centered {
@@ -98,11 +97,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      flex: 1;
       height: 100%;
-      max-height: 100vh;
-      overflow: hidden;
-      padding: 0 10px;
-      box-sizing: border-box;
+      max-height: 100vh; /* Maksimum yükseklik */
+      overflow: hidden; /* Taşma gizle */
+      z-index: 1; /* Üstte göster */
+      padding: 0 10px; /* Yatay iç boşluk */
+      box-sizing: border-box; /* Padding dahil genişlik hesapla */
     }
 
     footer {
@@ -111,11 +112,11 @@
       font-size: 14px;
       color: #bbb;
       font-style: italic;
-      user-select: none;
+      user-select: none; /* Metin seçimini engelle */
       width: 100%;
       text-align: center;
-      pointer-events: none;
-      z-index: 2;
+      pointer-events: none; /* Tıklanamaz yap */
+      z-index: 2; /* Üstte göster */
     }
 
     .particles {
@@ -124,28 +125,28 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; /* Üzerinden tıklamaları geç */
+      z-index: 0; /* Arka planda göster */
     }
 
     .particle {
       position: absolute;
-      background: rgba(255, 94, 120, 0.3);
-      border-radius: 50%;
+      background: rgba(255, 94, 120, 0.3); /* Pembe saydam renk */
+      border-radius: 50%; /* Yuvarlak */
       opacity: 0.6;
-      animation: floatUp 6s infinite ease-in-out;
+      animation: floatUp 6s infinite ease-in-out; /* Yukarı doğru hareket animasyonu */
     }
 
     @keyframes floatUp {
       0% {
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1); /* Başlangıç konumu ve ölçek */
         opacity: 0.6;
       }
       50% {
-        opacity: 1;
+        opacity: 1; /* Ortada tam görünürlük */
       }
       100% {
-        transform: translateY(-100vh) scale(0.5);
+        transform: translateY(-100vh) scale(0.5); /* Yukarı taşma ve küçülme */
         opacity: 0;
       }
     }
@@ -154,13 +155,14 @@
 <body>
   <div class="centered">
     <h1>Numaranı Alabilirmiyim 💖</h1>
-    <div class="ascii" id="heart"></div>
+    <div class="ascii" id="heart"></div> <!-- Kalp ASCII animasyonu burada gösterilir -->
   </div>
 
   <footer>&copy; 2025 Kaan tarafından, gönülden kodlandı.</footer>
-  <div class="particles" id="particles"></div>
+  <div class="particles" id="particles"></div> <!-- Hareketli partiküller için konteyner -->
 
   <script>
+    // ASCII olarak tanımlanmış kalp şekli
     const heart = `
 ⠀⠀⢀⣤⣾⣿⣿⣿⣿⣿⣶⣤⡀⢀⣤⣶⣿⣿⣿⣿⣿⣷⣤⡀⠀⠀
 ⠀⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀
@@ -173,24 +175,27 @@
 ⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
+    // Kalp ASCII'sini sayfada ilgili div'e yazdırma
     document.getElementById("heart").textContent = heart;
 
+    // Partikül konteyneri seçimi ve partikül sayısı
     const particlesContainer = document.getElementById('particles');
     const particleCount = 30;
 
+    // Belirtilen sayıda partikül oluşturma döngüsü
     for (let i = 0; i < particleCount; i++) {
       const p = document.createElement('div');
       p.classList.add('particle');
-      const size = Math.random() * 6 + 4 + 'px';
+      const size = Math.random() * 6 + 4 + 'px'; // Rastgele boyut 4-10px arası
       p.style.width = size;
       p.style.height = size;
-      p.style.left = Math.random() * 100 + 'vw';
-      p.style.top = Math.random() * 100 + 'vh';
-      p.style.animationDuration = 4 + Math.random() * 5 + 's';
-      p.style.animationDelay = (Math.random() * 6) + 's';
-      particlesContainer.appendChild(p);
+      p.style.left = Math.random() * 100 + 'vw'; // Ekran genişliği içinde rastgele konum
+      p.style.top = Math.random() * 100 + 'vh'; // Ekran yüksekliği içinde rastgele konum
+      p.style.animationDuration = 4 + Math.random() * 5 + 's'; // 4-9 saniye arası animasyon süresi
+      p.style.animationDelay = (Math.random() * 6) + 's'; // Animasyon başlangıç gecikmesi
+      particlesContainer.appendChild(p); // DOM'a ekle
     }
   </script>
 </body>
