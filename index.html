@@ -7,56 +7,78 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
-    @keyframes bgGradient {
-      0% { background-position: 0% 50%; }
+    :root {
+      --pink: #ff5e78;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
     }
 
     @keyframes flicker {
-      0%, 100% { opacity: 1; text-shadow: 0 0 8px #ff5e78; }
-      50% { opacity: 0.8; text-shadow: 0 0 25px #ff5e78; }
+      0%, 100% { opacity: 1; text-shadow: 0 0 8px var(--pink); }
+      50% { opacity: 0.8; text-shadow: 0 0 25px var(--pink); }
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
 
     body {
       margin: 0;
+      padding: 0;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       font-family: 'Courier Prime', monospace;
-      color: #ff5e78;
-      background: linear-gradient(-45deg, #1c1c1c, #ff5e78aa, #000, #ff5e78aa);
-      background-size: 400% 400%;
-      animation: bgGradient 15s ease infinite;
+      color: var(--pink);
+      background: #000;
       overflow: hidden;
       position: relative;
-      padding: 20px;
       text-align: center;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1200&q=60') no-repeat center center/cover;
+      filter: blur(10px) brightness(0.15);
+      z-index: -2;
+    }
+
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
       color: #fff;
-      text-shadow: 0 0 10px #ff5e78, 0 0 20px #ff5e78;
+      text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink);
       animation: flicker 3s ease-in-out infinite;
+      margin-bottom: 20px;
     }
 
     .ascii {
-      white-space: pre;
-      font-size: 20px;
+      white-space: pre-wrap;
+      font-size: clamp(10px, 3.5vw, 18px);
       line-height: 1.2;
-      text-shadow:
-        0 0 8px #ff5e78,
-        0 0 20px #ff5e78,
-        0 0 30px #ff5e78,
-        0 0 40px #ff5e78;
-      animation: flicker 3s ease-in-out infinite alternate;
-      max-width: 90vw;
-      margin-bottom: 30px;
+      text-shadow: 0 0 10px var(--pink), 0 0 20px var(--pink);
+      animation: heartBeat 2s infinite ease-in-out;
+      max-width: 95vw;
+      margin: 0 auto 30px;
       user-select: none;
+    }
+
+    .centered {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 10px;
+      z-index: 1;
     }
 
     footer {
@@ -69,16 +91,7 @@
       width: 100%;
       text-align: center;
       pointer-events: none;
-    }
-
-    .centered {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-      height: 100%;
-      z-index: 1;
+      z-index: 2;
     }
 
     .particles {
@@ -150,7 +163,7 @@
     document.getElementById("heart").textContent = heart;
 
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 25;
+    const particleCount = 30;
 
     for (let i = 0; i < particleCount; i++) {
       const p = document.createElement('div');
