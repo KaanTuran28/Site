@@ -1,78 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Kalpten Gelen Kod</title>
+  <title>Kaan'ın Kalbi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-      color: #ff4d6d;
+      background: radial-gradient(circle at center, #1c1c1c 0%, #000 100%);
+      color: #ff5e78;
       font-family: 'Courier New', monospace;
-      height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
       overflow: hidden;
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       margin-bottom: 20px;
       color: #fff;
-      text-shadow: 0 0 5px #ff4d6d, 0 0 15px #ff4d6d;
+      text-shadow: 0 0 5px #ff5e78, 0 0 15px #ff5e78;
       animation: pulse 2s infinite;
     }
 
     .ascii {
-      white-space: pre;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.2;
+      white-space: pre;
       text-align: center;
-      color: #ff4d6d;
-      text-shadow: 0 0 5px #ff4d6d;
-      animation: flicker 1.5s infinite alternate;
+      text-shadow: 0 0 8px #ff5e78;
+      animation: flicker 2s infinite alternate;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
+      0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
     }
 
     @keyframes flicker {
-      0% { opacity: 1; text-shadow: 0 0 5px #ff4d6d; }
-      100% { opacity: 0.7; text-shadow: 0 0 20px #ff4d6d; }
+      from {
+        opacity: 1;
+        text-shadow: 0 0 5px #ff5e78;
+      }
+      to {
+        opacity: 0.8;
+        text-shadow: 0 0 25px #ff5e78;
+      }
     }
 
     footer {
       position: absolute;
-      bottom: 15px;
+      bottom: 10px;
       font-size: 14px;
-      color: #666;
+      color: #777;
       font-style: italic;
     }
   </style>
 </head>
 <body>
-  <h1>Kodlayan Kalpten Sevgilerle ❤</h1>
+  <h1>Kaan’ın Kalbi Kodla Atıyor 💖</h1>
   <div class="ascii" id="heart"></div>
-  <footer>Bu kalp sadece Kaan için atıyor.</footer>
+  <footer>&copy; 2025 Kaan tarafından, gönülden kodlandı.</footer>
 
   <script>
     const heart = `
-      ***     ***
-    ******* *******
-   ***************
-    *************
-     ***********
-      *********
-        *****
-         ***
-          *
+         ******       ******
+      ***********   ***********
+    ************* *************
+   ******************************
+  *****************************
+  *****************************
+   ***************************
+    ***********************
+      *******************
+        ***************
+          ***********
+            *******
+              ***
+               *
     `;
     document.getElementById("heart").textContent = heart;
   </script>
